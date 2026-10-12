@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Vedaswa AI Labs | Applied AI & Cloud Micro-SaaS Systems</title>
+  <meta name="description" content="Rapid AI-assisted software delivery backed by enterprise-grade, resilient AWS cloud architecture." />
+  
+  <!-- Embedded 'V' SVG Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23030712'/%3E%3Cpath d='M26 26 L50 74 L74 26 L62 26 L50 54 L38 26 Z' fill='%236366f1'/%3E%3C/svg%3E" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          animation: {
+            'blob-float': 'blobFloat 18s ease-in-out infinite alternate',
+            'blob-pulse': 'blobPulse 12s ease-in-out infinite',
+            'infinite-scroll': 'infinite-scroll 30s linear infinite',
+          },
+          keyframes: {
+            blobFloat: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '50%': { transform: 'translate(60px, -40px) scale(1.15)' },
+              '100%': { transform: 'translate(-40px, 30px) scale(0.95)' },
+            },
+            blobPulse: {
+              '0%, 100%': { opacity: '0.45', transform: 'scale(1)' },
+              '50%': { opacity: '0.75', transform: 'scale(1.1)' },
+            },
+            'infinite-scroll': {
+              from: { transform: 'translateX(0)' },
+              to: { transform: 'translateX(-50%)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .fluid-grid {
+      background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.04) 1px, transparent 0);
+      background-size: 32px 32px;
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.15);
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #ffffff 10%, #cbd5e1 50%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .text-gradient-vibrant {
+      background: linear-gradient(135deg, #60a5fa 0%, #a855f7 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+  </style>
+</head>
+<body class="bg-[#030712] text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-indigo-500 selection:text-white">
+
+  <!-- Ambient Fluid Glow Background -->
+  <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+    <div class="absolute -top-32 left-1/4 w-[350px] sm:w-[650px] h-[350px] sm:h-[650px] bg-gradient-to-tr from-blue-600/30 to-indigo-500/20 rounded-full blur-[100px] sm:blur-[130px] animate-blob-float"></div>
+    <div class="absolute top-[35%] -right-24 sm:-right-48 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-gradient-to-br from-purple-600/25 to-pink-500/15 rounded-full blur-[100px] sm:blur-[140px] animate-blob-pulse"></div>
+    <div class="absolute -bottom-40 left-0 sm:left-10 w-[300px] sm:w-[550px] h-[300px] sm:h-[550px] bg-gradient-to-tr from-cyan-600/20 to-blue-500/20 rounded-full blur-[100px] sm:blur-[120px] animate-blob-float"></div>
+    <div class="absolute inset-0 fluid-grid"></div>
+  </div>
+
+  <!-- Dynamic Glass Navbar (Mobile Friendly & Accessible) -->
+  <header class="sticky top-0 z-50 px-3 sm:px-10 pt-3 sm:pt-4">
+    <div class="max-w-7xl mx-auto py-2.5 sm:py-3 px-4 sm:px-8 rounded-2xl glass-card flex flex-col md:flex-row md:items-center md:justify-between border border-white/10 shadow-2xl gap-3 md:gap-0">
+      
+      <!-- Brand & Mobile Row -->
+      <div class="flex items-center justify-between w-full md:w-auto">
+        <a href="#" class="flex items-center space-x-3.5 group">
+          
+          <!-- Neural 'V' Vector Badge (100% Transparent Background) -->
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-900/80 border border-indigo-500/30 flex items-center justify-center p-2 shadow-lg shadow-indigo-500/20 group-hover:border-indigo-400 group-hover:shadow-indigo-500/40 transition duration-300 flex-shrink-0">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+              <defs>
+                <linearGradient id="neuralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#38BDF8" />
+                  <stop offset="50%" stop-color="#818CF8" />
+                  <stop offset="100%" stop-color="#C084FC" />
+                </linearGradient>
+                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="2.5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <!-- Neural Lattice Struts -->
+              <path d="M22 24 L36 24 L50 78 L64 24 L78 24 L50 78 Z" stroke="url(#neuralGrad)" stroke-width="2" stroke-linejoin="round" fill="none" opacity="0.35" />
+              <path d="M22 24 L38 48 L50 78 L62 48 L78 24" stroke="url(#neuralGrad)" stroke-width="2.2" stroke-linecap="round" fill="none" />
+              <path d="M36 24 L50 44 L64 24" stroke="url(#neuralGrad)" stroke-width="2.2" stroke-linecap="round" fill="none" />
+              <path d="M38 48 L50 44 L62 48" stroke="url(#neuralGrad)" stroke-width="2" fill="none" />
+              <!-- Synaptic Nodes -->
+              <circle cx="22" cy="24" r="3" fill="#38BDF8" filter="url(#glow)" />
+              <circle cx="36" cy="24" r="2.5" fill="#38BDF8" />
+              <circle cx="64" cy="24" r="2.5" fill="#C084FC" />
+              <circle cx="78" cy="24" r="3" fill="#C084FC" filter="url(#glow)" />
+              <circle cx="38" cy="48" r="2.5" fill="#818CF8" />
+              <circle cx="62" cy="48" r="2.5" fill="#818CF8" />
+              <circle cx="50" cy="44" r="2.5" fill="#38BDF8" />
+              <circle cx="50" cy="78" r="4.5" fill="#38BDF8" filter="url(#glow)" />
+              <circle cx="50" cy="78" r="2" fill="#FFFFFF" />
+            </svg>
+          </div>
+
+          <!-- Crisp Native Typography (Never Blurry) -->
+          <div class="flex flex-col">
+            <span class="font-extrabold text-lg sm:text-2xl tracking-tight text-white leading-tight">
+              Vedaswa <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">AI Labs</span>
+            </span>
+            <span class="text-[9px] sm:text-[10px] font-mono tracking-widest text-slate-400 uppercase -mt-0.5">Applied Systems Studio</span>
+          </div>
+        </a>
+
+        <!-- Mobile CTA Button -->
+        <a href="mailto:contact@vedaswa.com" class="md:hidden text-xs font-semibold px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition shadow-md shadow-indigo-600/20">
+          Contact
+        </a>
+      </div>
+      
+
+      <!-- Navigation Links -->
+      <nav class="flex items-center justify-center space-x-6 sm:space-x-8 text-xs sm:text-sm font-medium text-slate-300 border-t border-slate-800/80 md:border-t-0 pt-2 md:pt-0">
+        <a href="#philosophy" class="hover:text-white transition py-1">Philosophy</a>
+        <a href="#solutions" class="hover:text-white transition py-1">Products</a>
+        <a href="#architecture" class="hover:text-white transition py-1">Cloud Mesh</a>
+      </nav>
+
+      <!-- Desktop Action Button -->
+      <a href="mailto:contact@vedaswa.com" class="hidden md:inline-flex relative group overflow-hidden rounded-xl p-px font-semibold text-xs uppercase tracking-wider">
+        <span class="absolute inset-0 bg-gradient-to-r from-blue-500 via-indigo-500 to-pink-500 rounded-xl group-hover:opacity-100 transition"></span>
+        <span class="relative block px-5 py-2.5 rounded-xl bg-slate-950/80 backdrop-blur-md text-white transition group-hover:bg-transparent">
+          contact@vedaswa.com
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-14 pb-12 sm:pt-28 sm:pb-20 px-4 sm:px-6">
+    <div class="max-w-5xl mx-auto text-center">
+      
+      <!-- Pill Badge -->
+      <div class="inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 backdrop-blur-md text-indigo-300 text-[11px] sm:text-xs font-mono uppercase tracking-wider mb-6 sm:mb-8 shadow-inner shadow-indigo-500/10">
+        <span class="flex h-2 w-2 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+        </span>
+        AWS-Native Applied AI & Micro-SaaS Studio
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-3xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.15] mb-6 sm:mb-8 text-gradient">
+        Build, automate & orchestrate with <span class="text-gradient-vibrant">intelligent cloud agents</span>
+      </h1>
+
+      <!-- Body Copy -->
+      <p class="text-sm sm:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-12 px-2">
+        Vedaswa AI Labs builds cloud-native, AWS-first AI products. We engineer zero-friction micro-SaaS engines that convert multi-format operational telemetry and enterprise documents into autonomous business intelligence.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-xs sm:max-w-none mx-auto">
+        <a href="#solutions" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 font-semibold text-white transition text-center shadow-lg shadow-indigo-600/30 text-sm sm:text-base">
+          Explore Live Products
+        </a>
+        <a href="#philosophy" class="w-full sm:w-auto px-6 py-3 rounded-xl border border-slate-700 hover:border-slate-500 font-medium text-slate-300 hover:text-white transition text-center text-sm sm:text-base bg-slate-900/40">
+          Our Philosophy
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Infinite Marquee / Tech & Ecosystem Ticker -->
+  <section class="py-6 sm:py-8 border-y border-slate-900 bg-slate-950/60 overflow-hidden relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 mb-4 sm:mb-5 text-center">
+      <p class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-slate-500">
+        Engineered Across Leading Enterprise Cloud & AI Ecosystems
+      </p>
+    </div>
+
+    <!-- Edge Blur Gradients -->
+    <div class="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-[#030712] to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-[#030712] to-transparent z-10 pointer-events-none"></div>
+
+    <!-- Continuous Marquee Track -->
+    <div class="flex select-none">
+      <div class="animate-infinite-scroll marquee-track flex items-center gap-4 sm:gap-8 font-mono text-xs sm:text-sm tracking-wide text-slate-300 whitespace-nowrap">
+        
+        <!-- Track Items: Set 1 -->
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+          <span class="text-white font-semibold">Amazon Web Services</span>
+        </div>
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span class="text-emerald-400 font-semibold">QuickBill UPI Engine</span>
+        </div>
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+          <span>Amazon Bedrock</span>
+        </div>
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+          <span>AWS Amplify Edge</span>
+        </div>
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-orange-400"></span>
+          <span>AWS Lambda Microservices</span>
+        </div>
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+          <span>AWS RDS PostgreSQL</span>
+        </div>
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+          <span>Amazon Textract</span>
+        </div>
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+          <span>Cloudflare Edge</span>
+        </div>
+
+        <!-- Track Items: Set 2 (Duplicate for Seamless Infinite Loop) -->
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+          <span class="text-white font-semibold">Amazon Web Services</span>
+        </div>
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span class="text-emerald-400 font-semibold">QuickBill UPI Engine</span>
+        </div>
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+          <span>Amazon Bedrock</span>
+        </div>
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+          <span>AWS Amplify Edge</span>
+        </div>
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-orange-400"></span>
+          <span>AWS Lambda Microservices</span>
+        </div>
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+          <span>AWS RDS PostgreSQL</span>
+        </div>
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+          <span>Amazon Textract</span>
+        </div>
+        <div class="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+          <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+          <span>Cloudflare Edge</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy & Blueprint Section -->
+  <section id="philosophy" class="py-14 sm:py-20 px-4 sm:px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="rounded-3xl glass-card p-5 sm:p-12 border border-white/10 shadow-2xl relative overflow-hidden">
+        
+        <div class="absolute -top-32 -right-32 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="border-b border-slate-800 pb-6 sm:pb-8 mb-8 sm:mb-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-mono uppercase tracking-wider mb-4">
+            Engineering Philosophy
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+            High Velocity Prototyping. <br class="hidden sm:block"/>
+            <span class="text-gradient-vibrant">Enterprise-Grade Cloud Resilience.</span>
+          </h2>
+          <p class="text-slate-400 text-sm sm:text-base lg:text-lg mt-3 max-w-2xl leading-relaxed">
+            We bridge the gap between rapid generative AI experimentation and production cloud reality. By pairing AI-accelerated workflows with decoupled AWS infrastructure, we compress product cycles from quarters to weeks—without taking on architectural debt.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+          <div class="p-5 sm:p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-indigo-500/40 transition flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center font-mono text-sm font-bold mb-4">
+                01
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-white mb-2">Rapid AI Ideation & Prototyping</h3>
+              <p class="text-slate-400 text-xs leading-relaxed">
+                Harnessing multimodal foundation models and AI code engines to build, validate, and iterate user-facing micro-SaaS workflows in record time.
+              </p>
+            </div>
+            <div class="mt-5 sm:mt-6 pt-4 border-t border-slate-800/80 font-mono text-[11px] text-blue-400">
+              Concept to Prototype: &lt; 7 Days
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-purple-500/40 transition flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-mono text-sm font-bold mb-4">
+                02
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-white mb-2">Zero-Idle Cloud Native Mesh</h3>
+              <p class="text-slate-400 text-xs leading-relaxed">
+                Every application is architected natively on AWS serverless services—Lambda, API Gateway, and DynamoDB. Zero baseline idle cost with near-instant scalability.
+              </p>
+            </div>
+            <div class="mt-5 sm:mt-6 pt-4 border-t border-slate-800/80 font-mono text-[11px] text-purple-400">
+              Decoupled & Event-Driven
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-pink-500/40 transition flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-400 flex items-center justify-center font-mono text-sm font-bold mb-4">
+                03
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-white mb-2">Well-Architected by Default</h3>
+              <p class="text-slate-400 text-xs leading-relaxed">
+                Security-first foundation model access through Amazon Bedrock, automated CI/CD pipelines via Amplify, and end-to-end edge protection powered by Cloudflare.
+              </p>
+            </div>
+            <div class="mt-5 sm:mt-6 pt-4 border-t border-slate-800/80 font-mono text-[11px] text-pink-400">
+              Security & Compliance Built-In
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions / Products Section -->
+  <section id="solutions" class="py-14 sm:py-20 px-4 sm:px-6 relative">
+    <div class="max-w-6xl mx-auto">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-xl mx-auto mb-12 sm:mb-16">
+        <span class="text-xs font-mono uppercase tracking-widest text-indigo-400">Engineered Deliverables</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white mt-2">Products & Autonomous Engines</h2>
+      </div>
+
+      <!-- 3-Column Product Grid (Left to Right) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        
+        <!-- 01. Live Flagship: QuickBill -->
+        <div class="glass-card p-6 sm:p-8 rounded-3xl transition-all duration-300 relative group overflow-hidden border border-emerald-500/30 hover:border-emerald-500/60 shadow-lg shadow-emerald-500/5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center font-mono font-bold text-lg group-hover:scale-110 transition duration-300">
+                01
+              </div>
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                Live Product
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-white mb-2">QuickBill</h3>
+            <div class="text-xs font-mono text-emerald-400 mb-3">Instant UPI Invoicing Micro-SaaS</div>
+            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+              Offline-first billing engine for solo merchants. Generates client-side NPCI-compliant dynamic UPI QR codes and standard PDF receipts in &lt;10 seconds without sign-up friction.
+            </p>
+          </div>
+          
+          <div class="flex flex-col gap-2.5 mt-auto w-full pt-4 border-t border-slate-800/60">
+            <!-- Launch Web App CTA -->
+            <a href="https://quickbill.vedaswa.com" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 text-xs font-mono font-semibold transition group shadow-sm">
+              <span>Launch QuickBill Web App</span>
+              <span class="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+            </a>
+
+            <!-- Sub row: Instagram + Explore More -->
+            <div class="grid grid-cols-2 gap-2">
+              <a href="https://instagram.com/quick_upibill" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 text-slate-300 hover:text-white border border-slate-700/60 text-xs font-mono font-medium transition">
+                <svg class="w-3.5 h-3.5 text-pink-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                <span>Instagram</span>
+              </a>
+
+              <a href="#details-quickbill" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-mono font-medium transition group">
+                <span>Explore More</span>
+                <span class="group-hover:translate-y-0.5 transition-transform">&darr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02. Clean Energy & Solar Analytics -->
+        <div class="glass-card p-6 sm:p-8 rounded-3xl transition-all duration-300 relative group overflow-hidden border border-purple-500/30 hover:border-purple-500/60 shadow-lg shadow-purple-500/5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/30 text-purple-400 flex items-center justify-center font-mono font-bold text-lg group-hover:scale-110 transition duration-300">
+                02
+              </div>
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold uppercase tracking-wider bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                Compute Engine
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-white mb-2">Clean Energy & Solar Analytics</h3>
+            <div class="text-xs font-mono text-purple-400 mb-3">Generation &amp; Yield Prediction</div>
+            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+              Algorithmic solar ROI calculators, net-metering validation, and solar generation forecasting modules targeted at distributed clean energy operators.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-slate-800/60 mt-auto w-full">
+            <a href="#details-solar" class="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-mono font-semibold transition group shadow-sm">
+              <span>Explore More</span>
+              <span class="group-hover:translate-y-0.5 transition-transform">&darr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 03. Autonomous Workflow Agents -->
+        <div class="glass-card p-6 sm:p-8 rounded-3xl transition-all duration-300 relative group overflow-hidden border border-pink-500/30 hover:border-pink-500/60 shadow-lg shadow-pink-500/5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-12 h-12 rounded-2xl bg-pink-500/10 border border-pink-500/30 text-pink-400 flex items-center justify-center font-mono font-bold text-lg group-hover:scale-110 transition duration-300">
+                03
+              </div>
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold uppercase tracking-wider bg-pink-500/20 text-pink-300 border border-pink-500/30">
+                Event Mesh
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-white mb-2">Autonomous Workflow Agents</h3>
+            <div class="text-xs font-mono text-pink-400 mb-3">Event-Driven Automation</div>
+            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+              Cloud-native micro-services that listen to asynchronous webhooks, reconcile payment records, and dispatch multi-channel operational updates.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-slate-800/60 mt-auto w-full">
+            <a href="#details-agents" class="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-pink-500/10 hover:bg-pink-500/20 text-pink-300 border border-pink-500/30 text-xs font-mono font-semibold transition group shadow-sm">
+              <span>Explore More</span>
+              <span class="group-hover:translate-y-0.5 transition-transform">&darr;</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- PRODUCT ARCHITECTURE & TECHNICAL BLUEPRINTS               -->
+      <!-- ========================================================= -->
+      <div class="space-y-12 mt-16 w-full">
+
+        <!-- DEEP DIVE 01: QUICKBILL -->
+        <section id="details-quickbill" class="scroll-mt-28 glass-card p-6 sm:p-10 rounded-3xl border border-emerald-500/30 shadow-2xl shadow-emerald-950/20">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-6 mb-8">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  Engine 01 // Solo Commerce
+                </span>
+                <span class="text-xs font-mono text-slate-400">Live Production MVP</span>
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">QuickBill — Frictionless UPI Invoicing Architecture</h3>
+            </div>
+            <a href="#solutions" class="text-xs font-mono text-slate-400 hover:text-emerald-400 transition flex items-center gap-1">
+              <span>&uarr;</span> Back to Grid
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm leading-relaxed">
+            <!-- Col 1: Business Requirement -->
+            <div class="space-y-3">
+              <h4 class="text-sm font-mono uppercase tracking-wider text-emerald-400 font-semibold flex items-center gap-2">
+                <span>01</span> Business Requirement
+              </h4>
+              <p class="text-slate-300">
+                Independent retail operators, pop-up stores, and micro-entrepreneurs operate in high-velocity mobile transaction environments. They require zero-friction customer billing without mandatory subscription paywalls, tedious software installations, or proprietary POS terminal hardware.
+              </p>
+            </div>
+
+            <!-- Col 2: The Issue Solved -->
+            <div class="space-y-3">
+              <h4 class="text-sm font-mono uppercase tracking-wider text-emerald-400 font-semibold flex items-center gap-2">
+                <span>02</span> Problem Solved
+              </h4>
+              <ul class="space-y-2 text-slate-300">
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong>Payment Lag:</strong> Generates dynamic, amount-embedded UPI QR codes in &lt;10 seconds to eliminate customer payment typing errors.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong>Hardware Lock-in:</strong> Replaces thermal slip printers with client-side canvas rasterization for direct WhatsApp/PDF dispatch.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong>Connectivity Loss:</strong> Maintains continuous checkout capabilities through offline browser-buffered ledger storage.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Col 3: AWS Stack & AI Integration -->
+            <div class="space-y-3">
+              <h4 class="text-sm font-mono uppercase tracking-wider text-emerald-400 font-semibold flex items-center gap-2">
+                <span>03</span> AWS & AI Architecture
+              </h4>
+              <ul class="space-y-2 text-slate-300">
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong>Serverless Backend:</strong> AWS Lambda &amp; Amazon API Gateway for high-concurrency ledger persistence.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong>NoSQL Storage:</strong> Amazon DynamoDB for millisecond-latency merchant catalog and sales sync.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong class="text-emerald-300">AI Integration:</strong> Amazon Bedrock (Claude 3.5 Sonnet) &amp; Amazon Textract for instant receipt optical recognition, expense auto-categorization, and automated daily sales insights.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- DEEP DIVE 02: CLEAN ENERGY & SOLAR ANALYTICS -->
+        <section id="details-solar" class="scroll-mt-28 glass-card p-6 sm:p-10 rounded-3xl border border-purple-500/30 shadow-2xl shadow-purple-950/20">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-6 mb-8">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold uppercase tracking-wider bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                  Engine 02 // Compute Engine
+                </span>
+                <span class="text-xs font-mono text-slate-400">Algorithmic Modeling</span>
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Clean Energy &amp; Solar Analytics — Yield Engine</h3>
+            </div>
+            <a href="#solutions" class="text-xs font-mono text-slate-400 hover:text-purple-400 transition flex items-center gap-1">
+              <span>&uarr;</span> Back to Grid
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm leading-relaxed">
+            <!-- Col 1: Business Requirement -->
+            <div class="space-y-3">
+              <h4 class="text-sm font-mono uppercase tracking-wider text-purple-400 font-semibold flex items-center gap-2">
+                <span>01</span> Business Requirement
+              </h4>
+              <p class="text-slate-300">
+                Commercial rooftop solar developers, installers, and renewable plant operators require precise, defensible mathematical forecasts for solar irradiance yields, CAPEX payback horizons, and multi-year degradation models to justify upfront capital deployment.
+              </p>
+            </div>
+
+            <!-- Col 2: The Issue Solved -->
+            <div class="space-y-3">
+              <h4 class="text-sm font-mono uppercase tracking-wider text-purple-400 font-semibold flex items-center gap-2">
+                <span>02</span> Problem Solved
+              </h4>
+              <ul class="space-y-2 text-slate-300">
+                <li class="flex items-start gap-2">
+                  <span class="text-purple-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong>Manual Spreadsheet Fatigue:</strong> Replaces error-prone manual Excel modeling with automated computational yield algorithms.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-purple-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong>Regulatory Discrepancies:</strong> Programmatically parses state-specific DISCOM net-metering slabs and tiered export tariffs.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-purple-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong>Lengthy Proposal Turnarounds:</strong> Generates instant technical validation reports for prospective rooftop clients.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Col 3: AWS Stack & AI Integration -->
+            <div class="space-y-3">
+              <h4 class="text-sm font-mono uppercase tracking-wider text-purple-400 font-semibold flex items-center gap-2">
+                <span>03</span> AWS & AI Architecture
+              </h4>
+              <ul class="space-y-2 text-slate-300">
+                <li class="flex items-start gap-2">
+                  <span class="text-purple-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong>Compute Runners:</strong> Containerized FastAPI microservices deployed on AWS Lambda &amp; Amazon ECS Fargate.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-purple-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong>Telemetry Lake:</strong> Amazon S3 for historical solar irradiance data, time-series cache, and generated PDF reports.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-purple-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong class="text-purple-300">AI Integration:</strong> Amazon SageMaker predictive regression models to forecast seasonal irradiance drift, shading attenuation, and panel degradation curves over 25-year spans.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- DEEP DIVE 03: AUTONOMOUS WORKFLOW AGENTS -->
+        <section id="details-agents" class="scroll-mt-28 glass-card p-6 sm:p-10 rounded-3xl border border-pink-500/30 shadow-2xl shadow-pink-950/20">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-6 mb-8">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold uppercase tracking-wider bg-pink-500/20 text-pink-300 border border-pink-500/30">
+                  Engine 03 // Event Mesh
+                </span>
+                <span class="text-xs font-mono text-slate-400">Distributed Micro-Services</span>
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Autonomous Workflow Agents — Event-Driven Mesh</h3>
+            </div>
+            <a href="#solutions" class="text-xs font-mono text-slate-400 hover:text-pink-400 transition flex items-center gap-1">
+              <span>&uarr;</span> Back to Grid
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm leading-relaxed">
+            <!-- Col 1: Business Requirement -->
+            <div class="space-y-3">
+              <h4 class="text-sm font-mono uppercase tracking-wider text-pink-400 font-semibold flex items-center gap-2">
+                <span>01</span> Business Requirement
+              </h4>
+              <p class="text-slate-300">
+                Modern software ecosystems run across dozens of fragmented SaaS APIs, webhooks, and payment platforms. Teams require self-healing automation layers that ingest unpredictable burst volumes, eliminate silent data loss, and reconcile records without human overhead.
+              </p>
+            </div>
+
+            <!-- Col 2: The Issue Solved -->
+            <div class="space-y-3">
+              <h4 class="text-sm font-mono uppercase tracking-wider text-pink-400 font-semibold flex items-center gap-2">
+                <span>02</span> Problem Solved
+              </h4>
+              <ul class="space-y-2 text-slate-300">
+                <li class="flex items-start gap-2">
+                  <span class="text-pink-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong>Monolithic Fragility:</strong> Eliminates API timeouts and dropped webhooks via asynchronous queue buffers.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-pink-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong>Manual Reconciliation:</strong> Automates real-time ledger matching between payment webhooks and database states.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-pink-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong>Expensive Idle Compute:</strong> Completely eliminates idle server bills through on-demand, event-triggered functions.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Col 3: AWS Stack & AI Integration -->
+            <div class="space-y-3">
+              <h4 class="text-sm font-mono uppercase tracking-wider text-pink-400 font-semibold flex items-center gap-2">
+                <span>03</span> AWS & AI Architecture
+              </h4>
+              <ul class="space-y-2 text-slate-300">
+                <li class="flex items-start gap-2">
+                  <span class="text-pink-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong>Event Ingestion:</strong> Amazon EventBridge &amp; Amazon SQS FIFO queues for guaranteed message processing.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-pink-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong>Execution &amp; Telemetry:</strong> AWS Lambda decoupled runners with Amazon CloudWatch metrics and alarms.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-pink-400 font-mono text-xs mt-0.5">&bull;</span>
+                  <span><strong class="text-pink-300">AI Integration:</strong> Amazon Bedrock Autonomous Agents to intelligently classify failed transaction payloads, autonomously diagnose schema mismatches, and perform self-healing retries.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Section -->
+  <section id="architecture" class="py-14 sm:py-20 px-4 sm:px-6 border-t border-slate-900">
+    <div class="max-w-6xl mx-auto">
+      <div class="max-w-2xl mb-10 sm:mb-14">
+        <span class="text-xs font-mono uppercase tracking-widest text-indigo-400">Zero Idle Compute</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mt-2">Decoupled Serverless Cloud Mesh</h2>
+        <p class="text-slate-400 mt-2 sm:mt-3 text-xs sm:text-sm leading-relaxed">
+          Engineered for rapid scaling, resilience, and strict cost efficiency on AWS.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 font-mono text-xs">
+        <div class="p-5 sm:p-6 rounded-2xl glass-card">
+          <span class="text-indigo-400 font-semibold block mb-2">COMPUTE</span>
+          <p class="text-slate-200 font-bold text-sm mb-1">AWS Lambda & Fargate</p>
+          <p class="text-slate-500 text-[11px] leading-relaxed">Containerized FastAPI microservices running Python 3.12</p>
+        </div>
+
+        <div class="p-5 sm:p-6 rounded-2xl glass-card">
+          <span class="text-purple-400 font-semibold block mb-2">INTELLIGENCE</span>
+          <p class="text-slate-200 font-bold text-sm mb-1">Amazon Bedrock</p>
+          <p class="text-slate-500 text-[11px] leading-relaxed">Claude 3.5 & Titan foundation models via private VPC endpoints</p>
+        </div>
+
+        <div class="p-5 sm:p-6 rounded-2xl glass-card">
+          <span class="text-blue-400 font-semibold block mb-2">PERSISTENCE</span>
+          <p class="text-slate-200 font-bold text-sm mb-1">DynamoDB & S3</p>
+          <p class="text-slate-500 text-[11px] leading-relaxed">Encrypted blob storage with sub-10ms operational queries</p>
+        </div>
+
+        <div class="p-5 sm:p-6 rounded-2xl glass-card">
+          <span class="text-pink-400 font-semibold block mb-2">EDGE & CDN</span>
+          <p class="text-slate-200 font-bold text-sm mb-1">Amplify & Cloudflare</p>
+          <p class="text-slate-500 text-[11px] leading-relaxed">Global DNS caching, automated SSL, and DDoS mitigation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA & Founder Contact -->
+  <section class="py-16 sm:py-24 px-4 sm:px-6 text-center">
+    <div class="max-w-3xl mx-auto rounded-3xl glass-card p-6 sm:p-14 border border-white/10 relative overflow-hidden">
+      <div class="absolute -top-24 -left-24 w-48 h-48 bg-indigo-500/20 rounded-full blur-3xl"></div>
+      <div class="relative z-10">
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-3 sm:mb-4">
+          Ready to partner or collaborate?
+        </h2>
+        <p class="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
+          Vedaswa AI Labs is an independent software studio building proprietary AI products engineered exclusively on AWS cloud primitives. Reach out for technical partnerships or product inquiries.
+        </p>
+        <a href="mailto:contact@vedaswa.com" class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 font-semibold text-white transition shadow-lg shadow-indigo-600/30 text-xs sm:text-sm">
+          <span>contact@vedaswa.com</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-900 py-8 sm:py-10 px-4 sm:px-6 text-xs text-slate-500 bg-slate-950/80">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div>&copy; 2026 Vedaswa AI Labs. All rights reserved.</div>
+      <div class="flex items-center space-x-6">
+        <a href="#philosophy" class="hover:text-slate-400 transition">Philosophy</a>
+        <a href="#solutions" class="hover:text-slate-400 transition">Products</a>
+        <a href="#architecture" class="hover:text-slate-400 transition">Architecture</a>
+        <a href="mailto:contact@vedaswa.com" class="hover:text-slate-400 transition">contact@vedaswa.com</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
